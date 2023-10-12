@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.intro_to_recyclerview'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.intro_to_recyclerview"
@@ -29,7 +29,9 @@ android {
 }
 
 dependencies {
-
+    // Para la version mas reciente de Android Studio
+    // implementation('com.android.volley:volley:1.2.1')
+    implementation 'com.android.volley:volley:1.2.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
