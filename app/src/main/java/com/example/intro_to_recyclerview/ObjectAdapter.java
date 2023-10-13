@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class ObjectAdapter extends RecyclerView.Adapter<ObjectViewHolder> {
 
-    private String[] objectDataset;
+    private JSONArray objectDataset;
 
-    public ObjectAdapter(String[] objectDataset) {
+    public ObjectAdapter(JSONArray objectDataset) {
         this.objectDataset = objectDataset;
     }
 
@@ -26,11 +29,26 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ObjectViewHolder holder, int position) {
-        holder.getTxt_listitem_name().setText(objectDataset[position]);
+        try {
+            holder.getTxt_listitem_name().setText(
+                    // objectDataset[position]
+                    objectDataset.getJSONObject(position)
+                            .getJSONObject("name")
+                            .getString("spanish")
+            );
+
+            holder.getTxt_listitem_lastname().setText(
+                    objectDataset.getJSONObject(position)
+                            .getJSONObject("name")
+                            .getString("latin")
+            );
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return objectDataset.length;
+        return objectDataset.length();
     }
 }
